@@ -1,3 +1,7 @@
 <resources>
     <string name="app_name">MyTodoApp</string>
+    <string name="splash_tagline">Stay organized, one task at a time.</string>
+    <string name="splash_icon_description">TodoApp check mark</string>
+    <string name="splash_loading">Getting things ready</string>
+
 </resources>
