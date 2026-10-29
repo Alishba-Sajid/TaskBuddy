@@ -49,3 +49,5 @@
         android:contentDescription="@string/splash_loading" />
 
 </LinearLayout>
+
+
