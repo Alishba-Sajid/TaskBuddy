@@ -23,4 +23,18 @@
     <!-- Add Task -->
     <string name="add_task_description">Add a new task</string>
 
+    <!-- Add Task Screen -->
+    <string name="add_task_heading">Create a task</string>
+    <string name="add_task_subtitle">A little planning goes a long way.</string>
+    <string name="task_title_label">Task title</string>
+    <string name="task_title_hint">What needs to get done?</string>
+    <string name="task_description_label">Description (optional)</string>
+    <string name="task_description_hint">Add some details about your task..</string>
+    <string name="save_task">Save Task</string>
+    <string name="go_back">Go back</string>
+    <string name="add_task_eyebrow">NEW TASK</string>
+    <string name="back_arrow">←</string>
+
+
+
 </resources>

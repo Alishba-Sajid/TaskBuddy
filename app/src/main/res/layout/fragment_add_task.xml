@@ -1,0 +1,139 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#F5F0E8">
+
+    <ScrollView
+        android:id="@+id/scrollAddTask"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:clipToPadding="false"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <!-- Back button -->
+            <TextView
+                android:id="@+id/tvBackButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                android:background="@drawable/bg_empty_icon"
+                android:gravity="center"
+                android:text="@string/back_arrow"
+                android:textColor="#263C2B"
+                android:textSize="26sp"
+                android:contentDescription="@string/go_back"
+                android:clickable="true"
+                android:focusable="true" />
+
+            <!-- Screen subtitle -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:text="@string/add_task_eyebrow"
+                android:textColor="#526B55"
+                android:textSize="12sp"
+                android:letterSpacing="0.08" />
+
+            <!-- Screen title -->
+            <TextView
+                android:id="@+id/tvAddTaskHeading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/add_task_heading"
+                android:textColor="#263C2B"
+                android:textSize="30sp"
+                android:textStyle="bold" />
+
+            <!-- Description under heading -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/add_task_subtitle"
+                android:textColor="#687565"
+                android:textSize="15sp" />
+
+            <!-- Task title label -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="32dp"
+                android:text="@string/task_title_label"
+                android:textColor="#263C2B"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <!-- Task title input -->
+            <EditText
+                android:id="@+id/etTaskTitle"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_search"
+                android:hint="@string/task_title_hint"
+                android:inputType="textCapSentences"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:singleLine="true"
+                android:textColor="#263C2B"
+                android:textColorHint="#687565"
+                android:textSize="15sp" />
+
+            <!-- Task description label -->
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/task_description_label"
+                android:textColor="#263C2B"
+                android:textSize="15sp"
+                android:textStyle="bold" />
+
+            <!-- Task description input -->
+            <EditText
+                android:id="@+id/etTaskDescription"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_search"
+                android:gravity="top|start"
+                android:hint="@string/task_description_hint"
+                android:inputType="textCapSentences|textMultiLine"
+                android:padding="16dp"
+                android:textColor="#263C2B"
+                android:textColorHint="#687565"
+                android:textSize="15sp" />
+
+            <!-- Save button -->
+            <Button
+                android:id="@+id/btnSaveTask"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginTop="28dp"
+                android:layout_marginBottom="24dp"
+                android:backgroundTint="#526B55"
+                android:text="@string/save_task"
+                android:textAllCaps="false"
+                android:textColor="#FFFFFF"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
