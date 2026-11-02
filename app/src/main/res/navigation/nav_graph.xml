@@ -9,7 +9,7 @@
     <!-- Splash Screen -->
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.mytodoapp.SplashFragment"
+        android:name="com.example.mytodoapp.ui.SplashFragment"
         android:label="Splash"
         tools:layout="@layout/fragment_splash">
 
@@ -24,7 +24,7 @@
     <!-- Home Screen -->
     <fragment
         android:id="@+id/homeFragment"
-        android:name="com.example.mytodoapp.HomeFragment"
+        android:name="com.example.mytodoapp.ui.HomeFragment"
         android:label="Home"
         tools:layout="@layout/fragment_home">
 
@@ -37,7 +37,7 @@
     <!-- Add Task Screen -->
     <fragment
         android:id="@+id/addTaskFragment"
-        android:name="com.example.mytodoapp.AddTaskFragment"
+        android:name="com.example.mytodoapp.ui.AddTaskFragment"
         android:label="Add Task"
         tools:layout="@layout/fragment_add_task" />
 

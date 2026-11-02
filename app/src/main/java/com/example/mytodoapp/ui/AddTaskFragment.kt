@@ -1,11 +1,11 @@
-
-package com.example.mytodoapp
+package com.example.mytodoapp.ui
 
 import android.os.Bundle
 import android.view.View
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
+import com.example.mytodoapp.R
 
 class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
 
@@ -15,7 +15,7 @@ class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
     ) {
         super.onViewCreated(view, savedInstanceState)
 
-        // Handle the Back button
+
         val backButton = view.findViewById<TextView>(R.id.tvBackButton)
 
         backButton.setOnClickListener {
