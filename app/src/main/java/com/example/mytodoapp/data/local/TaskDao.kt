@@ -18,6 +18,9 @@ interface TaskDao {
 
     @Query("SELECT * FROM tasks ORDER BY created_at DESC")
     fun getAllTasks(): LiveData<List<Task>>
+    @Query("SELECT * FROM tasks WHERE id = :taskId LIMIT 1")
+    fun getTaskById(taskId: Long): LiveData<Task?>
+
 
 
     @Update

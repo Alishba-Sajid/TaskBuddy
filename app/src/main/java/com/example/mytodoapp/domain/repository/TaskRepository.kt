@@ -1,3 +1,4 @@
+
 package com.example.mytodoapp.domain.repository
 
 import androidx.lifecycle.LiveData
@@ -6,6 +7,8 @@ import com.example.mytodoapp.domain.model.Task
 interface TaskRepository {
 
     fun getAllTasks(): LiveData<List<Task>>
+
+    fun getTaskById(taskId: Long): LiveData<Task?>
 
     suspend fun insertTask(task: Task): Long
 

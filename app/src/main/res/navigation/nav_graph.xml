@@ -6,7 +6,7 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/splashFragment">
 
-    <!-- Splash Screen -->
+
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.example.mytodoapp.ui.SplashFragment"
@@ -21,7 +21,7 @@
 
     </fragment>
 
-    <!-- Home Screen -->
+
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.mytodoapp.ui.HomeFragment"
@@ -34,11 +34,19 @@
 
     </fragment>
 
-    <!-- Add Task Screen -->
+
     <fragment
         android:id="@+id/addTaskFragment"
         android:name="com.example.mytodoapp.ui.AddTaskFragment"
         android:label="Add Task"
-        tools:layout="@layout/fragment_add_task" />
+        tools:layout="@layout/fragment_add_task">
+
+        <argument
+            android:name="taskId"
+            app:argType="long"
+            android:defaultValue="-1L" />
+
+    </fragment>
+
 
 </navigation>

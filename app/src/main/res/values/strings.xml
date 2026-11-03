@@ -34,7 +34,11 @@
     <string name="go_back">Go back</string>
     <string name="add_task_eyebrow">NEW TASK</string>
     <string name="back_arrow">←</string>
-
+    <string name="edit_task">Edit task</string>
+    <string name="delete_task">Delete task</string>
+    <string name="task_title_required">Please enter a task title</string>
+    <string name="task_description">Task description</string>
+    <string name="task_title">Task title</string>
 
 
 </resources>

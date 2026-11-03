@@ -7,9 +7,10 @@ import com.example.mytodoapp.data.local.Task as TaskEntity
 import com.example.mytodoapp.data.local.TaskDao
 import com.example.mytodoapp.domain.model.Task as DomainTask
 import com.example.mytodoapp.domain.repository.TaskRepository
+import javax.inject.Inject
 
 
-class TaskRepositoryImpl(
+class TaskRepositoryImpl @Inject constructor(
     private val taskDao: TaskDao
 ) : TaskRepository {
 
@@ -18,6 +19,12 @@ class TaskRepositoryImpl(
             taskEntities.map { entity ->
                 entity.toDomain()
             }
+        }
+    }
+
+    override fun getTaskById(taskId: Long): LiveData<DomainTask?> {
+        return taskDao.getTaskById(taskId).map { entity ->
+            entity?.toDomain()
         }
     }
 
