@@ -23,7 +23,6 @@
             android:orientation="vertical"
             android:padding="24dp">
 
-            <!-- Back button -->
             <TextView
                 android:id="@+id/tvBackButton"
                 android:layout_width="48dp"
@@ -37,7 +36,6 @@
                 android:clickable="true"
                 android:focusable="true" />
 
-            <!-- Screen subtitle -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -47,7 +45,7 @@
                 android:textSize="12sp"
                 android:letterSpacing="0.08" />
 
-            <!-- Screen title -->
+
             <TextView
                 android:id="@+id/tvAddTaskHeading"
                 android:layout_width="wrap_content"
@@ -58,7 +56,6 @@
                 android:textSize="30sp"
                 android:textStyle="bold" />
 
-            <!-- Description under heading -->
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -67,7 +64,7 @@
                 android:textColor="#687565"
                 android:textSize="15sp" />
 
-            <!-- Task title label -->
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -77,7 +74,7 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
-            <!-- Task title input -->
+
             <EditText
                 android:id="@+id/etTaskTitle"
                 android:layout_width="match_parent"
@@ -93,7 +90,7 @@
                 android:textColorHint="#687565"
                 android:textSize="15sp" />
 
-            <!-- Task description label -->
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -103,7 +100,6 @@
                 android:textSize="15sp"
                 android:textStyle="bold" />
 
-            <!-- Task description input -->
             <EditText
                 android:id="@+id/etTaskDescription"
                 android:layout_width="match_parent"
@@ -118,7 +114,7 @@
                 android:textColorHint="#687565"
                 android:textSize="15sp" />
 
-            <!-- Save button -->
+
             <Button
                 android:id="@+id/btnSaveTask"
                 android:layout_width="match_parent"
