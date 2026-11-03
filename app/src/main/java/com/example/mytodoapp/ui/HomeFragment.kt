@@ -49,6 +49,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         val allTasks = mutableListOf<Task>()
 
+
+        var isRestoringSearchQuery = false
+
         val taskAdapter = TaskAdapter(
 
             onEditClick = { task ->
@@ -99,7 +102,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             }
         }
 
-
+       .
         taskViewModel.allTasks.observe(viewLifecycleOwner) { tasks ->
 
             allTasks.clear()
@@ -108,8 +111,28 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             updateTaskList()
         }
 
+     
+        searchInput.addTextChangedListener { text ->
 
-        searchInput.addTextChangedListener {
+            if (!isRestoringSearchQuery) {
+                taskViewModel.saveSearchQuery(text.toString())
+            }
+
+            updateTaskList()
+        }
+
+        taskViewModel.savedSearchQuery.observe(viewLifecycleOwner) { savedQuery ->
+
+            if (searchInput.text.toString() != savedQuery) {
+
+                isRestoringSearchQuery = true
+
+                searchInput.setText(savedQuery)
+                searchInput.setSelection(searchInput.text.length)
+
+                isRestoringSearchQuery = false
+            }
+
             updateTaskList()
         }
 
