@@ -19,11 +19,13 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
         super.onViewCreated(view, savedInstanceState)
 
         viewLifecycleOwner.lifecycleScope.launch {
-            delay(1500.milliseconds)
+            delay(1500L.milliseconds)
 
-            findNavController().navigate(
-                R.id.action_splashFragment_to_homeFragment
-            )
+            if (findNavController().currentDestination?.id == R.id.splashFragment) {
+                findNavController().navigate(
+                    R.id.action_splashFragment_to_homeFragment
+                )
+            }
         }
     }
 }

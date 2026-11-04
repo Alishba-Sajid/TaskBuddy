@@ -1,32 +1,34 @@
-<?xml version="1.0" encoding="UTF-8" ?>
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Added android:fitsSystemWindows="true" to prevent content from being covered by System UI in preview configurations -->
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     android:background="#F5F0E8"
     android:padding="24dp">
 
-
-    <TextView
+    <!-- Used MaterialTextView to ensure correct edge-to-edge system insets and rendering -->
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvSplashIcon"
         android:layout_width="88dp"
         android:layout_height="88dp"
-        android:gravity="center"
         android:background="@drawable/splash_icon_background"
-        android:text="✓"
+        android:gravity="center"
+        android:importantForAccessibility="no"
+        android:text="@string/splash_icon"
         android:textColor="#FFFFFF"
         android:textSize="48sp"
-        android:fontFamily="sans-serif"
-        android:contentDescription="@string/splash_icon_description"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintBottom_toTopOf="@id/tvAppName"
-        app:layout_constraintVertical_chainStyle="packed" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:ignore="TextSizeCheck" />
 
-
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvAppName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -40,21 +42,19 @@
         app:layout_constraintTop_toBottomOf="@id/tvSplashIcon"
         app:layout_constraintBottom_toTopOf="@id/tvTagline" />
 
-
-    <TextView
+    <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvTagline"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="@string/splash_tagline"
-        android:textColor="#687565"
+        android:textColor="#53604F"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@id/tvAppName"
         app:layout_constraintBottom_toTopOf="@id/progressSplash" />
-
 
     <ProgressBar
         android:id="@+id/progressSplash"
@@ -62,7 +62,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:indeterminate="true"
         android:indeterminateTint="#526B55"
         android:contentDescription="@string/splash_loading"
         app:layout_constraintStart_toStartOf="parent"

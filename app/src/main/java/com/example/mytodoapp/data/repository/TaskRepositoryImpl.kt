@@ -46,7 +46,6 @@ class TaskRepositoryImpl @Inject constructor(
             id = id,
             title = title,
             description = description,
-            isCompleted = isCompleted,
             createdAt = createdAt
         )
     }
@@ -56,7 +55,6 @@ class TaskRepositoryImpl @Inject constructor(
             id = id,
             title = title,
             description = description,
-            isCompleted = isCompleted,
             createdAt = createdAt
         )
     }

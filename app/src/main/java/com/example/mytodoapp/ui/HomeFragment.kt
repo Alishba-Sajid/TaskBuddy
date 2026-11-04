@@ -1,26 +1,25 @@
-
 package com.example.mytodoapp.ui
 
 import android.os.Bundle
 import android.view.View
-import android.widget.EditText
-import android.widget.LinearLayout
 import androidx.appcompat.app.AlertDialog
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.mytodoapp.R
+import com.example.mytodoapp.databinding.FragmentHomeBinding
 import com.example.mytodoapp.domain.model.Task
 import com.example.mytodoapp.ui.adapter.TaskAdapter
 import com.example.mytodoapp.ui.viewmodel.TaskViewModel
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
+
+    private var _binding: FragmentHomeBinding? = null
+    private val binding get() = _binding!!
 
     private val taskViewModel: TaskViewModel by activityViewModels()
 
@@ -30,25 +29,9 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     ) {
         super.onViewCreated(view, savedInstanceState)
 
-        val addTaskButton = view.findViewById<FloatingActionButton>(
-            R.id.fabAddTask
-        )
-
-        val recyclerView = view.findViewById<RecyclerView>(
-            R.id.recyclerTasks
-        )
-
-        val emptyState = view.findViewById<LinearLayout>(
-            R.id.layoutEmptyState
-        )
-
-        val searchInput = view.findViewById<EditText>(
-            R.id.etSearchTasks
-        )
-
+        _binding = FragmentHomeBinding.bind(view)
 
         val allTasks = mutableListOf<Task>()
-
 
         var isRestoringSearchQuery = false
 
@@ -67,26 +50,28 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
             onDeleteClick = { task ->
                 AlertDialog.Builder(requireContext())
-                    .setTitle("Delete task?")
-                    .setMessage("Are you sure you want to delete '${task.title}'?")
-                    .setNegativeButton("Cancel", null)
-                    .setPositiveButton("Delete") { _, _ ->
+                    .setTitle(R.string.delete_task_title)
+                    .setMessage(
+                        getString(R.string.delete_task_message, task.title)
+                    )
+                    .setNegativeButton(R.string.cancel, null)
+                    .setPositiveButton(R.string.delete) { _, _ ->
                         taskViewModel.deleteTask(task)
                     }
                     .show()
             }
         )
 
-        recyclerView.layoutManager = LinearLayoutManager(requireContext())
-        recyclerView.adapter = taskAdapter
+        binding.recyclerTasks.layoutManager =
+            LinearLayoutManager(requireContext())
 
+        binding.recyclerTasks.adapter = taskAdapter
 
         fun updateTaskList() {
 
-            val searchText = searchInput.text.toString().trim()
+            val searchText = binding.etSearchTasks.text.toString().trim()
 
             val filteredTasks = allTasks.filter { task ->
-
                 task.title.contains(searchText, ignoreCase = true) ||
                         task.description.contains(searchText, ignoreCase = true)
             }
@@ -94,25 +79,22 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             taskAdapter.submitList(filteredTasks)
 
             if (filteredTasks.isEmpty()) {
-                recyclerView.visibility = View.GONE
-                emptyState.visibility = View.VISIBLE
+                binding.recyclerTasks.visibility = View.GONE
+                binding.layoutEmptyState.visibility = View.VISIBLE
             } else {
-                recyclerView.visibility = View.VISIBLE
-                emptyState.visibility = View.GONE
+                binding.recyclerTasks.visibility = View.VISIBLE
+                binding.layoutEmptyState.visibility = View.GONE
             }
         }
 
-       .
         taskViewModel.allTasks.observe(viewLifecycleOwner) { tasks ->
-
             allTasks.clear()
             allTasks.addAll(tasks)
 
             updateTaskList()
         }
 
-     
-        searchInput.addTextChangedListener { text ->
+        binding.etSearchTasks.addTextChangedListener { text ->
 
             if (!isRestoringSearchQuery) {
                 taskViewModel.saveSearchQuery(text.toString())
@@ -123,12 +105,14 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         taskViewModel.savedSearchQuery.observe(viewLifecycleOwner) { savedQuery ->
 
-            if (searchInput.text.toString() != savedQuery) {
+            if (binding.etSearchTasks.text.toString() != savedQuery) {
 
                 isRestoringSearchQuery = true
 
-                searchInput.setText(savedQuery)
-                searchInput.setSelection(searchInput.text.length)
+                binding.etSearchTasks.setText(savedQuery)
+                binding.etSearchTasks.setSelection(
+                    binding.etSearchTasks.text.length
+                )
 
                 isRestoringSearchQuery = false
             }
@@ -136,10 +120,15 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             updateTaskList()
         }
 
-        addTaskButton.setOnClickListener {
+        binding.fabAddTask.setOnClickListener {
             findNavController().navigate(
                 R.id.action_homeFragment_to_addTaskFragment
             )
         }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }

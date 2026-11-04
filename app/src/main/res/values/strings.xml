@@ -8,12 +8,17 @@
     <string name="splash_tagline">Stay organized, one task at a time.</string>
     <string name="splash_icon_description">TodoApp check mark</string>
     <string name="splash_loading">Getting things ready</string>
+    <string name="splash_icon">✓</string>
 
     <!-- Home Screen -->
     <string name="home_subtitle">YOUR DAY, YOUR WAY</string>
     <string name="home_title">My Tasks</string>
     <string name="app_icon_description">Task Buddy app icon</string>
     <string name="search_tasks_hint">Search your tasks..</string>
+    <string name="delete_task_title">Delete task?</string>
+    <string name="delete_task_message">Are you sure you want to delete \'%1$s\'?</string>
+    <string name="cancel">Cancel</string>
+    <string name="delete">Delete</string>
 
     <!-- Empty State -->
     <string name="empty_state_icon_description">Task checklist illustration</string>
@@ -22,6 +27,7 @@
 
     <!-- Add Task -->
     <string name="add_task_description">Add a new task</string>
+    <string name="task_not_found">Task could not be found</string>
 
     <!-- Add Task Screen -->
     <string name="add_task_heading">Create a task</string>

@@ -1,15 +1,12 @@
-
 package com.example.mytodoapp.ui.adapter
 
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.example.mytodoapp.R
+import com.example.mytodoapp.databinding.ItemTaskBinding
 import com.example.mytodoapp.domain.model.Task
 
 class TaskAdapter(
@@ -22,10 +19,13 @@ class TaskAdapter(
         viewType: Int
     ): TaskViewHolder {
 
-        val view = LayoutInflater.from(parent.context)
-            .inflate(R.layout.item_task, parent, false)
+        val binding = ItemTaskBinding.inflate(
+            LayoutInflater.from(parent.context),
+            parent,
+            false
+        )
 
-        return TaskViewHolder(view)
+        return TaskViewHolder(binding)
     }
 
     override fun onBindViewHolder(
@@ -37,45 +37,29 @@ class TaskAdapter(
         holder.bind(task, onEditClick, onDeleteClick)
     }
 
-    class TaskViewHolder(itemView: View) :
-        RecyclerView.ViewHolder(itemView) {
-
-        private val taskTitle = itemView.findViewById<TextView>(
-            R.id.tvTaskTitle
-        )
-
-        private val taskDescription = itemView.findViewById<TextView>(
-            R.id.tvTaskDescription
-        )
-
-        private val editButton = itemView.findViewById<ImageButton>(
-            R.id.btnEditTask
-        )
-
-        private val deleteButton = itemView.findViewById<ImageButton>(
-            R.id.btnDeleteTask
-        )
+    class TaskViewHolder(
+        private val binding: ItemTaskBinding
+    ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(
             task: Task,
             onEditClick: (Task) -> Unit,
             onDeleteClick: (Task) -> Unit
         ) {
-
-            taskTitle.text = task.title
+            binding.tvTaskTitle.text = task.title
 
             if (task.description.isBlank()) {
-                taskDescription.visibility = View.GONE
+                binding.tvTaskDescription.visibility = View.GONE
             } else {
-                taskDescription.visibility = View.VISIBLE
-                taskDescription.text = task.description
+                binding.tvTaskDescription.visibility = View.VISIBLE
+                binding.tvTaskDescription.text = task.description
             }
 
-            editButton.setOnClickListener {
+            binding.btnEditTask.setOnClickListener {
                 onEditClick(task)
             }
 
-            deleteButton.setOnClickListener {
+            binding.btnDeleteTask.setOnClickListener {
                 onDeleteClick(task)
             }
         }

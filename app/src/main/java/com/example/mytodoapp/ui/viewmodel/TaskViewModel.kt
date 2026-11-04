@@ -18,10 +18,9 @@ class TaskViewModel @Inject constructor(
     private val userPreferences: UserPreferences
 ) : ViewModel() {
 
-    // Observe all tasks from Room.
+
     val allTasks: LiveData<List<Task>> = repository.getAllTasks()
 
-    // Retrieve the saved search query from DataStore as LiveData.
     val savedSearchQuery: LiveData<String> =
         userPreferences.getSearchQuery().asLiveData()
 
@@ -29,7 +28,7 @@ class TaskViewModel @Inject constructor(
         return repository.getTaskById(taskId)
     }
 
-    // Save the user's search query in DataStore.
+
     fun saveSearchQuery(query: String) {
         viewModelScope.launch {
             userPreferences.saveSearchQuery(query)

@@ -1,10 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <com.google.android.material.card.MaterialCardView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="12dp"
+    android:fitsSystemWindows="true"
     app:cardBackgroundColor="#FFFFFF"
     app:cardCornerRadius="18dp"
     app:cardElevation="2dp"
@@ -18,14 +21,15 @@
         android:gravity="center_vertical"
         android:padding="16dp">
 
-        <!-- Task information -->
+
         <LinearLayout
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:orientation="vertical">
 
-            <TextView
+
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvTaskTitle"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -34,9 +38,10 @@
                 android:textStyle="bold"
                 android:maxLines="2"
                 android:ellipsize="end"
-                android:text="@string/task_title" />
+                android:text="@string/task_title"
+                tools:ignore="VisualLintSystemUi" />
 
-            <TextView
+            <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvTaskDescription"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -52,8 +57,8 @@
 
         <ImageButton
             android:id="@+id/btnEditTask"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:layout_marginStart="8dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/edit_task"
@@ -65,8 +70,8 @@
 
         <ImageButton
             android:id="@+id/btnDeleteTask"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
             android:background="?attr/selectableItemBackgroundBorderless"
             android:contentDescription="@string/delete_task"
             android:padding="10dp"

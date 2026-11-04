@@ -9,8 +9,6 @@ data class Task(
 
     val description: String = "",
 
-    val isCompleted: Boolean = false,
-
     val createdAt: Long = System.currentTimeMillis()
 
 )
