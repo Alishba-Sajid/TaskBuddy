@@ -1,4 +1,4 @@
-package com.example.mytodoapp.ui
+package com.example.mytodoapp.presentation.splash
 
 import android.os.Bundle
 import android.view.View
@@ -20,7 +20,6 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
 
         viewLifecycleOwner.lifecycleScope.launch {
             delay(1500L.milliseconds)
-
             if (findNavController().currentDestination?.id == R.id.splashFragment) {
                 findNavController().navigate(
                     R.id.action_splashFragment_to_homeFragment

@@ -1,18 +1,17 @@
-package com.example.mytodoapp.ui
+
+package com.example.mytodoapp.presentation.home
 
 import android.os.Bundle
 import android.view.View
 import androidx.appcompat.app.AlertDialog
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mytodoapp.R
 import com.example.mytodoapp.databinding.FragmentHomeBinding
 import com.example.mytodoapp.domain.model.Task
-import com.example.mytodoapp.ui.adapter.TaskAdapter
-import com.example.mytodoapp.ui.viewmodel.TaskViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,7 +20,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
 
-    private val taskViewModel: TaskViewModel by activityViewModels()
+    private val homeViewModel: HomeViewModel by viewModels()
 
     override fun onViewCreated(
         view: View,
@@ -31,8 +30,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
 
         _binding = FragmentHomeBinding.bind(view)
 
-        val allTasks = mutableListOf<Task>()
-
+        var allTasks: List<Task> = emptyList()
         var isRestoringSearchQuery = false
 
         val taskAdapter = TaskAdapter(
@@ -56,7 +54,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     )
                     .setNegativeButton(R.string.cancel, null)
                     .setPositiveButton(R.string.delete) { _, _ ->
-                        taskViewModel.deleteTask(task)
+                        homeViewModel.deleteTask(task)
                     }
                     .show()
             }
@@ -68,7 +66,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         binding.recyclerTasks.adapter = taskAdapter
 
         fun updateTaskList() {
-
             val searchText = binding.etSearchTasks.text.toString().trim()
 
             val filteredTasks = allTasks.filter { task ->
@@ -87,26 +84,21 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             }
         }
 
-        taskViewModel.allTasks.observe(viewLifecycleOwner) { tasks ->
-            allTasks.clear()
-            allTasks.addAll(tasks)
-
+        homeViewModel.allTasks.observe(viewLifecycleOwner) { tasks ->
+            allTasks = tasks
             updateTaskList()
         }
 
         binding.etSearchTasks.addTextChangedListener { text ->
-
             if (!isRestoringSearchQuery) {
-                taskViewModel.saveSearchQuery(text.toString())
+                homeViewModel.saveSearchQuery(text.toString())
             }
 
             updateTaskList()
         }
 
-        taskViewModel.savedSearchQuery.observe(viewLifecycleOwner) { savedQuery ->
-
+        homeViewModel.savedSearchQuery.observe(viewLifecycleOwner) { savedQuery ->
             if (binding.etSearchTasks.text.toString() != savedQuery) {
-
                 isRestoringSearchQuery = true
 
                 binding.etSearchTasks.setText(savedQuery)

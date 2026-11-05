@@ -1,4 +1,4 @@
-package com.example.mytodoapp.ui.adapter
+package com.example.mytodoapp.presentation.home
 
 import android.view.LayoutInflater
 import android.view.View
@@ -48,11 +48,9 @@ class TaskAdapter(
         ) {
             binding.tvTaskTitle.text = task.title
 
-            if (task.description.isBlank()) {
-                binding.tvTaskDescription.visibility = View.GONE
-            } else {
-                binding.tvTaskDescription.visibility = View.VISIBLE
-                binding.tvTaskDescription.text = task.description
+            binding.tvTaskDescription.apply {
+                visibility = if (task.description.isBlank()) View.GONE else View.VISIBLE
+                text = task.description
             }
 
             binding.btnEditTask.setOnClickListener {

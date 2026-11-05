@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" ?>
-<!-- Added android:fitsSystemWindows="true" to prevent content from being covered by System UI in preview configurations -->
+
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
@@ -25,7 +25,6 @@
             android:layout_height="wrap_content"
             android:padding="24dp">
 
-            <!-- Used MaterialTextView to ensure correct edge-to-edge system insets and rendering -->
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvBackButton"
                 android:layout_width="48dp"
@@ -63,8 +62,8 @@
                 android:textColor="#263C2B"
                 android:textSize="30sp"
                 android:textStyle="bold"
-                app:layout_constraintTop_toBottomOf="@id/tvAddTaskEyebrow"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/tvAddTaskEyebrow" />
 
             <com.google.android.material.textview.MaterialTextView
                 android:id="@+id/tvAddTaskSubtitle"
@@ -95,7 +94,6 @@
                 android:layout_height="56dp"
                 android:layout_marginTop="10dp"
                 android:importantForAutofill="no"
-                android:maxWidth="488dp"
                 android:background="@drawable/bg_search"
                 android:hint="@string/task_title_hint"
                 android:inputType="textCapSentences"
@@ -146,7 +144,6 @@
                 android:id="@+id/btnSaveTask"
                 android:layout_width="wrap_content"
                 android:layout_height="56dp"
-                android:maxWidth="320dp"
                 android:layout_marginTop="28dp"
                 android:layout_marginBottom="24dp"
                 android:backgroundTint="#526B55"

@@ -1,9 +1,9 @@
-package com.example.mytodoapp.data.di
+package com.example.mytodoapp.di
 
 import android.content.Context
 import androidx.room.Room
-import com.example.mytodoapp.data.local.TaskDao
-import com.example.mytodoapp.data.local.TaskDatabase
+import com.example.mytodoapp.data.local.database.TaskDao
+import com.example.mytodoapp.data.local.database.TaskDatabase
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn

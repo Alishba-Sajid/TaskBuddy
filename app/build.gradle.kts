@@ -20,6 +20,11 @@ android {
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
 
+    buildFeatures {
+        viewBinding = true
+    }
+
+
     buildTypes {
         release {
             optimization {
@@ -44,30 +49,29 @@ dependencies {
     androidTestImplementation(libs.androidx.espresso.core)
     androidTestImplementation(libs.androidx.junit)
 
-    // Navigation
+
     implementation(libs.androidx.navigation.fragment.ktx)
     implementation(libs.androidx.navigation.ui.ktx)
 
-// Lifecycle
+
     implementation(libs.androidx.lifecycle.viewmodel.ktx)
     implementation(libs.androidx.lifecycle.livedata.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
 
-// Room Database
+
     implementation(libs.androidx.room.runtime)
     implementation(libs.androidx.room.ktx)
     ksp(libs.androidx.room.compiler)
 
-// RecyclerView
+
     implementation(libs.androidx.recyclerview)
 
-// DataStore
     implementation(libs.androidx.datastore.preferences)
 
-// Coroutines
+
     implementation(libs.kotlinx.coroutines.android)
 
-// Hilt
+
     implementation(libs.hilt.android)
     ksp(libs.hilt.compiler)
 

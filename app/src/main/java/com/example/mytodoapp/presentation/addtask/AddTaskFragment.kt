@@ -1,15 +1,15 @@
-package com.example.mytodoapp.ui
+
+package com.example.mytodoapp.presentation.addtask
 
 import android.os.Bundle
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.mytodoapp.R
 import com.example.mytodoapp.databinding.FragmentAddTaskBinding
 import com.example.mytodoapp.domain.model.Task
-import com.example.mytodoapp.ui.viewmodel.TaskViewModel
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -18,7 +18,7 @@ class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
     private var _binding: FragmentAddTaskBinding? = null
     private val binding get() = _binding!!
 
-    private val taskViewModel: TaskViewModel by activityViewModels()
+    private val addTaskViewModel: AddTaskViewModel by viewModels()
 
     private var existingTask: Task? = null
 
@@ -35,24 +35,26 @@ class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
         if (taskId != -1L) {
             binding.btnSaveTask.isEnabled = false
 
-            taskViewModel.getTaskById(taskId).observe(viewLifecycleOwner) { task ->
-                if (task != null) {
-                    existingTask = task
+            addTaskViewModel.getTaskById(taskId)
+                .observe(viewLifecycleOwner) { task ->
 
-                    binding.etTaskTitle.setText(task.title)
-                    binding.etTaskDescription.setText(task.description)
+                    if (task != null) {
+                        existingTask = task
 
-                    binding.btnSaveTask.isEnabled = true
-                } else {
-                    Toast.makeText(
-                        requireContext(),
-                        getString(R.string.task_not_found),
-                        Toast.LENGTH_SHORT
-                    ).show()
+                        binding.etTaskTitle.setText(task.title)
+                        binding.etTaskDescription.setText(task.description)
 
-                    findNavController().navigateUp()
+                        binding.btnSaveTask.isEnabled = true
+                    } else {
+                        Toast.makeText(
+                            requireContext(),
+                            getString(R.string.task_not_found),
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                        findNavController().navigateUp()
+                    }
                 }
-            }
         }
 
         binding.tvBackButton.setOnClickListener {
@@ -60,7 +62,6 @@ class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
         }
 
         binding.btnSaveTask.setOnClickListener {
-
             val title = binding.etTaskTitle.text.toString().trim()
             val description = binding.etTaskDescription.text.toString().trim()
 
@@ -75,14 +76,14 @@ class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
             val taskToEdit = existingTask
 
             if (taskToEdit == null) {
-                taskViewModel.addTask(title, description)
+                addTaskViewModel.addTask(title, description)
             } else {
                 val updatedTask = taskToEdit.copy(
                     title = title,
                     description = description
                 )
 
-                taskViewModel.updateTask(updatedTask)
+                addTaskViewModel.updateTask(updatedTask)
             }
 
             findNavController().navigateUp()

@@ -1,4 +1,4 @@
-package com.example.mytodoapp.data.preferences
+package com.example.mytodoapp.data.local.preferences
 
 import android.content.Context
 import androidx.datastore.preferences.core.edit

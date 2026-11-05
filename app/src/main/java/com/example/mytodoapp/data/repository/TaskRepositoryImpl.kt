@@ -3,8 +3,8 @@ package com.example.mytodoapp.data.repository
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.map
-import com.example.mytodoapp.data.local.Task as TaskEntity
-import com.example.mytodoapp.data.local.TaskDao
+import com.example.mytodoapp.data.local.database.Task as TaskEntity
+import com.example.mytodoapp.data.local.database.TaskDao
 import com.example.mytodoapp.domain.model.Task as DomainTask
 import com.example.mytodoapp.domain.repository.TaskRepository
 import javax.inject.Inject

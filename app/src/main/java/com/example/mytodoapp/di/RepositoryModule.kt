@@ -1,4 +1,4 @@
-package com.example.mytodoapp.data.di
+package com.example.mytodoapp.di
 
 import com.example.mytodoapp.data.repository.TaskRepositoryImpl
 import com.example.mytodoapp.domain.repository.TaskRepository
