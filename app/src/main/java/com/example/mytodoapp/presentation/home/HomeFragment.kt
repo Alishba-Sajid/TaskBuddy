@@ -23,15 +23,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
     private val homeViewModel: HomeViewModel by viewModels()
 
     override fun onViewCreated(
+
         view: View,
         savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = FragmentHomeBinding.bind(view)
+        binding.etSearchTasks.text?.clear()
 
         var allTasks: List<Task> = emptyList()
-        var isRestoringSearchQuery = false
 
         val taskAdapter = TaskAdapter(
 
@@ -79,6 +80,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                 binding.recyclerTasks.visibility = View.GONE
                 binding.layoutEmptyState.visibility = View.VISIBLE
             } else {
+
                 binding.recyclerTasks.visibility = View.VISIBLE
                 binding.layoutEmptyState.visibility = View.GONE
             }
@@ -89,25 +91,7 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             updateTaskList()
         }
 
-        binding.etSearchTasks.addTextChangedListener { text ->
-            if (!isRestoringSearchQuery) {
-                homeViewModel.saveSearchQuery(text.toString())
-            }
-
-            updateTaskList()
-        }
-
-        homeViewModel.savedSearchQuery.observe(viewLifecycleOwner) { savedQuery ->
-            if (binding.etSearchTasks.text.toString() != savedQuery) {
-                isRestoringSearchQuery = true
-
-                binding.etSearchTasks.setText(savedQuery)
-                binding.etSearchTasks.setSelection(
-                    binding.etSearchTasks.text.length
-                )
-
-                isRestoringSearchQuery = false
-            }
+        binding.etSearchTasks.addTextChangedListener {
 
             updateTaskList()
         }

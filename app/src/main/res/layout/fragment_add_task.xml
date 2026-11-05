@@ -6,7 +6,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:background="#F5F0E8">
 
     <ScrollView
@@ -126,7 +125,6 @@
                 android:layout_height="150dp"
                 android:layout_marginTop="10dp"
                 android:importantForAutofill="no"
-                android:maxWidth="488dp"
                 android:background="@drawable/bg_search"
                 android:gravity="top|start"
                 android:hint="@string/task_description_hint"

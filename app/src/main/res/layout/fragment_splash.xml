@@ -6,11 +6,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
     android:background="#F5F0E8"
     android:padding="24dp">
 
-    <!-- Used MaterialTextView to ensure correct edge-to-edge system insets and rendering -->
     <com.google.android.material.textview.MaterialTextView
         android:id="@+id/tvSplashIcon"
         android:layout_width="88dp"
