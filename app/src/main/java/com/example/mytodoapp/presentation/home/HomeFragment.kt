@@ -1,3 +1,4 @@
+
 package com.example.mytodoapp.presentation.home
 
 import android.os.Bundle
@@ -10,8 +11,8 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.mytodoapp.R
 import com.example.mytodoapp.databinding.FragmentHomeBinding
-import com.example.mytodoapp.domain.model.Task
 import dagger.hilt.android.AndroidEntryPoint
+
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
     private var _binding: FragmentHomeBinding? = null
@@ -27,8 +28,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         _binding = FragmentHomeBinding.bind(view)
 
         binding.etSearchTasks.text?.clear()
-
-        var allTasks: List<Task> = emptyList()
 
         val taskAdapter = TaskAdapter(
             onEditClick = { task ->
@@ -62,18 +61,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             recyclerTasks.adapter = taskAdapter
         }
 
-        fun updateTaskList() {
-            val searchText = binding.etSearchTasks.text.toString().trim()
+        homeViewModel.filteredTasks.observe(viewLifecycleOwner) { tasks ->
 
-            val filteredTasks = allTasks.filter { task ->
-                task.title.contains(searchText, ignoreCase = true) ||
-                        task.description.contains(searchText, ignoreCase = true)
-            }
+            taskAdapter.submitList(tasks)
 
             binding.apply {
-                taskAdapter.submitList(filteredTasks)
-
-                if (filteredTasks.isEmpty()) {
+                if (tasks.isEmpty()) {
                     recyclerTasks.visibility = View.GONE
                     layoutEmptyState.visibility = View.VISIBLE
                 } else {
@@ -83,13 +76,10 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             }
         }
 
-        homeViewModel.allTasks.observe(viewLifecycleOwner) { tasks ->
-            allTasks = tasks
-            updateTaskList()
-        }
-
-        binding.etSearchTasks.addTextChangedListener {
-            updateTaskList()
+        binding.etSearchTasks.addTextChangedListener { text ->
+            homeViewModel.onSearchQueryChanged(
+                text?.toString().orEmpty()
+            )
         }
 
         binding.fabAddTask.setOnClickListener {

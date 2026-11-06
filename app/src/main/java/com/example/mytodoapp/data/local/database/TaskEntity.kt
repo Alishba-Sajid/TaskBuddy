@@ -5,7 +5,7 @@ import androidx.room.Entity
 import androidx.room.PrimaryKey
 import com.example.mytodoapp.domain.model.Task
 @Entity(tableName = "tasks")
-data class TaskEntity(
+data class  TaskEntity(
 
     @PrimaryKey(autoGenerate = true)
     val id: Long = 0,

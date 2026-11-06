@@ -24,7 +24,6 @@ class TaskRepositoryImpl @Inject constructor(
             entity?.toDomain()
         }
     }
-
     override suspend fun insertTask(task: Task): Long {
         return taskDao.insertTask(task.toEntity())
     }
