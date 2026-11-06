@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- Added android:fitsSystemWindows="true" to prevent content from being covered by System UI in preview configurations -->
 <androidx.constraintlayout.widget.ConstraintLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#F5F0E8"
+    android:background="@color/app_background"
     android:padding="24dp">
 
     <com.google.android.material.textview.MaterialTextView
@@ -17,7 +16,7 @@
         android:gravity="center"
         android:importantForAccessibility="no"
         android:text="@string/splash_icon"
-        android:textColor="#FFFFFF"
+        android:textColor="@color/white"
         android:textSize="48sp"
         app:layout_constraintBottom_toTopOf="@id/tvAppName"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,7 +31,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:text="@string/app_name"
-        android:textColor="#263C2B"
+        android:textColor="@color/text_primary"
         android:textSize="32sp"
         android:textStyle="bold"
         app:layout_constraintStart_toStartOf="parent"
@@ -47,7 +46,7 @@
         android:layout_marginTop="8dp"
         android:gravity="center"
         android:text="@string/splash_tagline"
-        android:textColor="#53604F"
+        android:textColor="@color/text_secondary"
         android:textSize="15sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,7 +59,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
-        android:indeterminateTint="#526B55"
+        android:indeterminateTint="@color/green_primary"
         android:contentDescription="@string/splash_loading"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

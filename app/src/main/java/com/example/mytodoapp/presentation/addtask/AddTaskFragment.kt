@@ -1,4 +1,3 @@
-
 package com.example.mytodoapp.presentation.addtask
 
 import android.os.Bundle
@@ -11,15 +10,11 @@ import com.example.mytodoapp.R
 import com.example.mytodoapp.databinding.FragmentAddTaskBinding
 import com.example.mytodoapp.domain.model.Task
 import dagger.hilt.android.AndroidEntryPoint
-
 @AndroidEntryPoint
 class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
-
     private var _binding: FragmentAddTaskBinding? = null
     private val binding get() = _binding!!
-
-    private val addTaskViewModel: AddTaskViewModel by viewModels()
-
+    private val addEditTaskViewModel: AddEditTaskViewModel by viewModels()
     private var existingTask: Task? = null
 
     override fun onViewCreated(
@@ -35,16 +30,16 @@ class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
         if (taskId != -1L) {
             binding.btnSaveTask.isEnabled = false
 
-            addTaskViewModel.getTaskById(taskId)
+            addEditTaskViewModel.getTaskById(taskId)
                 .observe(viewLifecycleOwner) { task ->
-
                     if (task != null) {
                         existingTask = task
 
-                        binding.etTaskTitle.setText(task.title)
-                        binding.etTaskDescription.setText(task.description)
-
-                        binding.btnSaveTask.isEnabled = true
+                        binding.apply {
+                            etTaskTitle.setText(task.title)
+                            etTaskDescription.setText(task.description)
+                            btnSaveTask.isEnabled = true
+                        }
                     } else {
                         Toast.makeText(
                             requireContext(),
@@ -57,36 +52,42 @@ class AddTaskFragment : Fragment(R.layout.fragment_add_task) {
                 }
         }
 
-        binding.tvBackButton.setOnClickListener {
-            findNavController().navigateUp()
-        }
-
-        binding.btnSaveTask.setOnClickListener {
-            val title = binding.etTaskTitle.text.toString().trim()
-            val description = binding.etTaskDescription.text.toString().trim()
-
-            if (title.isBlank()) {
-                binding.etTaskTitle.error =
-                    getString(R.string.task_title_required)
-
-                binding.etTaskTitle.requestFocus()
-                return@setOnClickListener
+        binding.apply {
+            tvBackButton.setOnClickListener {
+                findNavController().navigateUp()
             }
 
-            val taskToEdit = existingTask
+            btnSaveTask.setOnClickListener {
+                val title = etTaskTitle.text.toString().trim()
+                val description = etTaskDescription.text.toString().trim()
 
-            if (taskToEdit == null) {
-                addTaskViewModel.addTask(title, description)
-            } else {
-                val updatedTask = taskToEdit.copy(
-                    title = title,
-                    description = description
-                )
+                if (title.isBlank()) {
+                    etTaskTitle.error =
+                        getString(R.string.task_title_required)
 
-                addTaskViewModel.updateTask(updatedTask)
+                    etTaskTitle.requestFocus()
+                    return@setOnClickListener
+                }
+
+                val taskToEdit = existingTask
+
+                if (taskToEdit == null) {
+                    addEditTaskViewModel.addTask(title, description)
+                } else {
+                    val hasChanges =
+                        title != taskToEdit.title ||
+                                description != taskToEdit.description
+
+                    if (hasChanges) {
+                        val updatedTask = taskToEdit.copy(
+                            title = title,
+                            description = description
+                        )
+                        addEditTaskViewModel.updateTask(updatedTask)
+                    }
+                }
+                findNavController().navigateUp()
             }
-
-            findNavController().navigateUp()
         }
     }
 

@@ -1,4 +1,3 @@
-
 package com.example.mytodoapp.domain.model
 
 data class Task(

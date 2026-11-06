@@ -8,7 +8,6 @@ import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.mytodoapp.databinding.ItemTaskBinding
 import com.example.mytodoapp.domain.model.Task
-
 class TaskAdapter(
     private val onEditClick: (Task) -> Unit,
     private val onDeleteClick: (Task) -> Unit
@@ -18,13 +17,11 @@ class TaskAdapter(
         parent: ViewGroup,
         viewType: Int
     ): TaskViewHolder {
-
         val binding = ItemTaskBinding.inflate(
             LayoutInflater.from(parent.context),
             parent,
             false
         )
-
         return TaskViewHolder(binding)
     }
 
@@ -36,33 +33,35 @@ class TaskAdapter(
 
         holder.bind(task, onEditClick, onDeleteClick)
     }
-
     class TaskViewHolder(
         private val binding: ItemTaskBinding
     ) : RecyclerView.ViewHolder(binding.root) {
-
         fun bind(
             task: Task,
             onEditClick: (Task) -> Unit,
             onDeleteClick: (Task) -> Unit
         ) {
-            binding.tvTaskTitle.text = task.title
+            binding.apply {
+                tvTaskTitle.text = task.title
 
-            binding.tvTaskDescription.apply {
-                visibility = if (task.description.isBlank()) View.GONE else View.VISIBLE
-                text = task.description
-            }
+                tvTaskDescription.apply {
+                    visibility =
+                        if (task.description.isBlank()) View.GONE
+                        else View.VISIBLE
 
-            binding.btnEditTask.setOnClickListener {
-                onEditClick(task)
-            }
+                    text = task.description
+                }
 
-            binding.btnDeleteTask.setOnClickListener {
-                onDeleteClick(task)
+                btnEditTask.setOnClickListener {
+                    onEditClick(task)
+                }
+
+                btnDeleteTask.setOnClickListener {
+                    onDeleteClick(task)
+                }
             }
         }
     }
-
     class TaskDiffCallback : DiffUtil.ItemCallback<Task>() {
 
         override fun areItemsTheSame(

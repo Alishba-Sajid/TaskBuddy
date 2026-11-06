@@ -7,14 +7,10 @@ import androidx.lifecycle.viewModelScope
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
 import kotlin.time.Duration.Companion.milliseconds
-
 class SplashViewModel : ViewModel() {
-
     private val _navigateToHome = MutableLiveData(false)
     val navigateToHome: LiveData<Boolean> = _navigateToHome
-
     private var hasStarted = false
-
     fun startSplash() {
         if (hasStarted) return
 
@@ -25,7 +21,6 @@ class SplashViewModel : ViewModel() {
             _navigateToHome.value = true
         }
     }
-
     fun onNavigationCompleted() {
         _navigateToHome.value = false
     }

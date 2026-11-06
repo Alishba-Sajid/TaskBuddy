@@ -1,4 +1,3 @@
-
 package com.example.mytodoapp.presentation.home
 
 import android.os.Bundle
@@ -13,29 +12,25 @@ import com.example.mytodoapp.R
 import com.example.mytodoapp.databinding.FragmentHomeBinding
 import com.example.mytodoapp.domain.model.Task
 import dagger.hilt.android.AndroidEntryPoint
-
 @AndroidEntryPoint
 class HomeFragment : Fragment(R.layout.fragment_home) {
-
     private var _binding: FragmentHomeBinding? = null
     private val binding get() = _binding!!
-
     private val homeViewModel: HomeViewModel by viewModels()
 
     override fun onViewCreated(
-
         view: View,
         savedInstanceState: Bundle?
     ) {
         super.onViewCreated(view, savedInstanceState)
 
         _binding = FragmentHomeBinding.bind(view)
+
         binding.etSearchTasks.text?.clear()
 
         var allTasks: List<Task> = emptyList()
 
         val taskAdapter = TaskAdapter(
-
             onEditClick = { task ->
                 val bundle = Bundle().apply {
                     putLong("taskId", task.id)
@@ -46,7 +41,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                     bundle
                 )
             },
-
             onDeleteClick = { task ->
                 AlertDialog.Builder(requireContext())
                     .setTitle(R.string.delete_task_title)
@@ -61,10 +55,12 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
             }
         )
 
-        binding.recyclerTasks.layoutManager =
-            LinearLayoutManager(requireContext())
+        binding.apply {
+            recyclerTasks.layoutManager =
+                LinearLayoutManager(requireContext())
 
-        binding.recyclerTasks.adapter = taskAdapter
+            recyclerTasks.adapter = taskAdapter
+        }
 
         fun updateTaskList() {
             val searchText = binding.etSearchTasks.text.toString().trim()
@@ -74,15 +70,16 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
                         task.description.contains(searchText, ignoreCase = true)
             }
 
-            taskAdapter.submitList(filteredTasks)
+            binding.apply {
+                taskAdapter.submitList(filteredTasks)
 
-            if (filteredTasks.isEmpty()) {
-                binding.recyclerTasks.visibility = View.GONE
-                binding.layoutEmptyState.visibility = View.VISIBLE
-            } else {
-
-                binding.recyclerTasks.visibility = View.VISIBLE
-                binding.layoutEmptyState.visibility = View.GONE
+                if (filteredTasks.isEmpty()) {
+                    recyclerTasks.visibility = View.GONE
+                    layoutEmptyState.visibility = View.VISIBLE
+                } else {
+                    recyclerTasks.visibility = View.VISIBLE
+                    layoutEmptyState.visibility = View.GONE
+                }
             }
         }
 
@@ -92,7 +89,6 @@ class HomeFragment : Fragment(R.layout.fragment_home) {
         }
 
         binding.etSearchTasks.addTextChangedListener {
-
             updateTaskList()
         }
 

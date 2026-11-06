@@ -6,7 +6,6 @@
     android:id="@+id/nav_graph"
     app:startDestination="@id/splashFragment">
 
-
     <fragment
         android:id="@+id/splashFragment"
         android:name="com.example.mytodoapp.presentation.splash.SplashFragment"
@@ -21,7 +20,6 @@
 
     </fragment>
 
-
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.example.mytodoapp.presentation.home.HomeFragment"
@@ -33,7 +31,6 @@
             app:destination="@id/addTaskFragment" />
 
     </fragment>
-
 
     <fragment
         android:id="@+id/addTaskFragment"
@@ -47,6 +44,5 @@
             android:defaultValue="-1L" />
 
     </fragment>
-
 
 </navigation>

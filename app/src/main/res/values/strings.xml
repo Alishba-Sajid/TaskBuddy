@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
     <!-- General -->
     <string name="app_name">Task Buddy</string>
 
@@ -14,7 +13,7 @@
     <string name="home_subtitle">YOUR DAY, YOUR WAY</string>
     <string name="home_title">My Tasks</string>
     <string name="app_icon_description">Task Buddy app icon</string>
-    <string name="search_tasks_hint">Search your tasks..</string>
+    <string name="search_tasks_hint">Search your tasks</string>
     <string name="delete_task_title">Delete task?</string>
     <string name="delete_task_message">Are you sure you want to delete \'%1$s\'?</string>
     <string name="cancel">Cancel</string>
@@ -35,7 +34,7 @@
     <string name="task_title_label">Task title</string>
     <string name="task_title_hint">What needs to get done?</string>
     <string name="task_description_label">Description (optional)</string>
-    <string name="task_description_hint">Add some details about your task..</string>
+    <string name="task_description_hint">Add some details about your task</string>
     <string name="save_task">Save Task</string>
     <string name="go_back">Go back</string>
     <string name="add_task_eyebrow">NEW TASK</string>
@@ -45,6 +44,5 @@
     <string name="task_title_required">Please enter a task title</string>
     <string name="task_description">Task description</string>
     <string name="task_title">Task title</string>
-
 
 </resources>

@@ -1,28 +1,21 @@
-
 package com.example.mytodoapp.data.local.database
 
-import androidx.lifecycle.LiveData
 import androidx.room.Dao
 import androidx.room.Delete
 import androidx.room.Insert
 import androidx.room.Query
 import androidx.room.Update
-
+import kotlinx.coroutines.flow.Flow
 @Dao
 interface TaskDao {
-
     @Insert
     suspend fun insertTask(task: TaskEntity): Long
-
     @Query("SELECT * FROM tasks ORDER BY created_at DESC")
-    fun getAllTasks(): LiveData<List<TaskEntity>>
-
+    fun getAllTasks(): Flow<List<TaskEntity>>
     @Query("SELECT * FROM tasks WHERE id = :taskId LIMIT 1")
-    fun getTaskById(taskId: Long): LiveData<TaskEntity?>
-
+    fun getTaskById(taskId: Long): Flow<TaskEntity?>
     @Update
     suspend fun updateTask(task: TaskEntity)
-
     @Delete
     suspend fun deleteTask(task: TaskEntity)
 }
